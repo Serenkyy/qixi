@@ -394,15 +394,7 @@
   canvas.height = H * DPR;
   var ctx = canvas.getContext('2d');
   ctx.scale(DPR, DPR);
-  /* paint the sky backdrop INTO the canvas so the canvas box can never
-     stand out as a rectangle on iOS (transparent canvas + 'lighter'
-     composites as a visible box on some WebKit versions) */
-  ctx.globalCompositeOperation = 'source-over';
-  var skybg = ctx.createLinearGradient(0, 0, 0, H);
-  skybg.addColorStop(0, '#1b0d3a');
-  skybg.addColorStop(1, '#2b1246');
-  ctx.fillStyle = skybg;
-  ctx.fillRect(0, 0, W, H);
+  /* transparent canvas — the sky shows through, only the petals glow */
   ctx.globalCompositeOperation = 'lighter';
   var garden = new Garden(ctx, canvas);
   var offsetX = W / 2;
