@@ -42,6 +42,14 @@
   #moon { position:fixed; top:5vh; right:7vw; width:14vmin; height:14vmin; z-index:8;
     pointer-events:none; filter:drop-shadow(0 0 24px rgba(255,236,190,.55)); }
 
+  /* magpie bridge — pure CSS arc (dashed top border on a rounded box) */
+  #bridge { position:fixed; top:14vh; left:15vw; width:70vw; height:28vh; z-index:1;
+    pointer-events:none;
+    border-top:2.5px dashed rgba(245,194,107,.55);
+    border-radius:50%;
+    filter:drop-shadow(0 0 6px rgba(245,194,107,.5));
+  }
+
   .lantern { position:fixed; bottom:-10vh; width:34px; height:46px; z-index:2; pointer-events:none;
     border-radius:50% 50% 46% 46% / 62% 62% 38% 38%;
     background: radial-gradient(circle at 42% 30%, #ffe9b8, #f5a25c 58%, #e0694a);
@@ -129,6 +137,8 @@
 <svg id="moon" viewBox="0 0 100 100" aria-hidden="true">
   <path d="M62,4 A50,50 0 1,0 62,96 A40,40 0 1,1 62,4 Z" fill="#ffe9b8"/>
 </svg>
+<!-- magpie bridge -->
+<div id="bridge"></div>
 
 <!-- magpies -->
 <div class="magpie" style="top:10vh; --fd:15s; --fdl:0s;  --sc:.85">
