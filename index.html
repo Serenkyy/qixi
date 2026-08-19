@@ -43,7 +43,9 @@
     pointer-events:none; filter:drop-shadow(0 0 24px rgba(255,236,190,.55)); }
 
   #bridge { position:fixed; top:-6vh; left:50%; transform:translateX(-50%);
-    width:100vw; height:36vh; z-index:1; pointer-events:none; opacity:.34; }
+    width:100vw; height:36vh; z-index:1; pointer-events:none; opacity:.34;
+    background:transparent;
+    filter:drop-shadow(0 0 6px rgba(245,194,107,.6)); }
 
   .lantern { position:fixed; bottom:-10vh; width:34px; height:46px; z-index:2; pointer-events:none;
     border-radius:50% 50% 46% 46% / 62% 62% 38% 38%;
@@ -132,22 +134,16 @@
 <svg id="moon" viewBox="0 0 100 100" aria-hidden="true">
   <path d="M62,4 A50,50 0 1,0 62,96 A40,40 0 1,1 62,4 Z" fill="#ffe9b8"/>
 </svg>
-<svg id="bridge" viewBox="0 0 1200 340" aria-hidden="true" preserveAspectRatio="none">
-  <defs>
-    <filter id="bglow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
+<svg id="bridge" viewBox="0 0 1200 340" aria-hidden="true">
   <path d="M120,300 Q600,-80 1080,300" fill="none" stroke="#f5c26b" stroke-width="3"
-        stroke-dasharray="2 15" stroke-linecap="round" filter="url(#bglow)" opacity=".9"/>
+        stroke-dasharray="2 15" stroke-linecap="round" opacity=".9"/>
   <path d="M120,300 Q600,-80 1080,300" fill="none" stroke="#ffe9b8" stroke-width="10"
         stroke-dasharray="1 15" stroke-linecap="round" opacity=".35"/>
-  <circle cx="560" cy="62" r="4" fill="#ffe9b8" filter="url(#bglow)"/>
-  <circle cx="636" cy="60" r="5" fill="#ffe9b8" filter="url(#bglow)"/>
-  <circle cx="716" cy="70" r="4" fill="#ffe9b8" filter="url(#bglow)"/>
-  <circle cx="452" cy="86" r="3.5" fill="#ffe9b8" filter="url(#bglow)"/>
-  <circle cx="800" cy="94" r="3" fill="#ffe9b8" filter="url(#bglow)"/>
+  <circle cx="560" cy="62" r="4" fill="#ffe9b8"/>
+  <circle cx="636" cy="60" r="5" fill="#ffe9b8"/>
+  <circle cx="716" cy="70" r="4" fill="#ffe9b8"/>
+  <circle cx="452" cy="86" r="3.5" fill="#ffe9b8"/>
+  <circle cx="800" cy="94" r="3" fill="#ffe9b8"/>
 </svg>
 
 <!-- magpies -->
