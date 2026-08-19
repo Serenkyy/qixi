@@ -13,14 +13,15 @@
     --ink: #f3f0ff;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height:100%; }
+  html { min-height:100%; }
   /* dark base on html kills the white line/overscroll on iOS */
   html { background:#070b26; }
   body {
     font-family: "Songti SC", "STSong", "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
-    background: linear-gradient(180deg, #070b26 0%, #121036 42%, #251043 78%, #31144a 100%);
+    background: linear-gradient(180deg, #070b26 0%, #121036 40%, #2b1246 70%, #100b2e 100%);
     color: var(--ink);
     min-height: 100vh;
+    min-height: 100svh; /* iOS: visible viewport height, not the tall one */
     overflow-x: hidden;
     position: relative;
   }
@@ -98,7 +99,7 @@
 
   #loveHeart { position:relative; width:min(620px,92vw); aspect-ratio:670/620;
     margin:8px auto 0; }
-  #garden { position:absolute; inset:0; width:100%; height:100%; }
+  #garden { position:absolute; inset:0; width:100%; height:100%; background:transparent; }
 
   #words { position:absolute; top:26%; left:4%; width:92%; text-align:center; }
   #messages { display:none; opacity:0; color:#ffd9a0; font-size:clamp(15px,2.1vw,21px);
@@ -393,6 +394,15 @@
   canvas.height = H * DPR;
   var ctx = canvas.getContext('2d');
   ctx.scale(DPR, DPR);
+  /* paint the sky backdrop INTO the canvas so the canvas box can never
+     stand out as a rectangle on iOS (transparent canvas + 'lighter'
+     composites as a visible box on some WebKit versions) */
+  ctx.globalCompositeOperation = 'source-over';
+  var skybg = ctx.createLinearGradient(0, 0, 0, H);
+  skybg.addColorStop(0, '#1b0d3a');
+  skybg.addColorStop(1, '#2b1246');
+  ctx.fillStyle = skybg;
+  ctx.fillRect(0, 0, W, H);
   ctx.globalCompositeOperation = 'lighter';
   var garden = new Garden(ctx, canvas);
   var offsetX = W / 2;
@@ -428,7 +438,7 @@
 
   function revealPoem() {
     stanzas.forEach(function (s, i) {
-      setTimeout(function () { s.classList.add('show'); }, 600 + i * 1900);
+      setTimeout(function () { s.classList.add('show'); }, 500 + i * 1500);
     });
   }
 
@@ -498,8 +508,8 @@
 
   /* ================= boot ================= */
   revealPoem();
-  /* heart blooms as the last lines appear (7 stanzas × 1.9s ≈ 13.9s) */
-  setTimeout(function () { startHeartAnimation(); }, 12500);
+  /* heart blooms as the last lines appear (7 stanzas × 1.5s ≈ 11s) */
+  setTimeout(function () { startHeartAnimation(); }, 10500);
   timeElapse(together);
   setInterval(function () { timeElapse(together); }, 500);
 
